@@ -11,39 +11,47 @@ import QuartzCore
 
 class GameViewController: NSViewController {
     
+    var grid: Grid?
+    var game: GameOfLife?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        func setupLights(_ scene: SCNScene) {
+            // create and add a light to the scene
+            let lightNode = SCNNode()
+            lightNode.light = SCNLight()
+            lightNode.light!.type = .omni
+            lightNode.position = SCNVector3(x: 0, y: 10, z: 10)
+            scene.rootNode.addChildNode(lightNode)
+            
+            // create and add an ambient light to the scene
+            let ambientLightNode = SCNNode()
+            ambientLightNode.light = SCNLight()
+            ambientLightNode.light!.type = .ambient
+            ambientLightNode.light!.color = NSColor.darkGray
+            scene.rootNode.addChildNode(ambientLightNode)
+        }
         // create a new scene
-        let scene = SCNScene(named: "art.scnassets/ship.scn")!
+        let scene = SCNScene(named: "art.scnassets/gameScene.scn")!
         
-        // create and add a camera to the scene
-        let cameraNode = SCNNode()
-        cameraNode.camera = SCNCamera()
-        scene.rootNode.addChildNode(cameraNode)
+        let camera = scene.rootNode.childNode(withName: "camera", recursively: true)!
         
-        // place the camera
-        cameraNode.position = SCNVector3(x: 0, y: 0, z: 15)
+//        // create and add a camera to the scene
+//        let cameraNode = SCNNode()
+//        cameraNode.camera = SCNCamera()
+//        scene.rootNode.addChildNode(cameraNode)
+//
+//        // place the camera
+//        cameraNode.position = SCNVector3(x: 0, y: 0, z: 15)
+//
+        setupLights(scene)
         
-        // create and add a light to the scene
-        let lightNode = SCNNode()
-        lightNode.light = SCNLight()
-        lightNode.light!.type = .omni
-        lightNode.position = SCNVector3(x: 0, y: 10, z: 10)
-        scene.rootNode.addChildNode(lightNode)
-        
-        // create and add an ambient light to the scene
-        let ambientLightNode = SCNNode()
-        ambientLightNode.light = SCNLight()
-        ambientLightNode.light!.type = .ambient
-        ambientLightNode.light!.color = NSColor.darkGray
-        scene.rootNode.addChildNode(ambientLightNode)
-        
-        // retrieve the ship node
-        let ship = scene.rootNode.childNode(withName: "ship", recursively: true)!
-        
-        // animate the 3d object
-        ship.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 2, z: 0, duration: 1)))
+//        // retrieve the ship node
+//        let ship = scene.rootNode.childNode(withName: "ship", recursively: true)!
+//
+//        // animate the 3d object
+//        ship.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 2, z: 0, duration: 1)))
         
         // retrieve the SCNView
         let scnView = self.view as! SCNView
@@ -65,6 +73,18 @@ class GameViewController: NSViewController {
         var gestureRecognizers = scnView.gestureRecognizers
         gestureRecognizers.insert(clickGesture, at: 0)
         scnView.gestureRecognizers = gestureRecognizers
+        
+        
+        grid = Grid(width: 50, height: 50)
+        scene.rootNode.addChildNode(grid!)
+        
+        game = GameOfLife(grid: grid!)
+    }
+    
+    override func keyDown(with event: NSEvent) {
+        if event.keyCode == 49 {
+            game?.step()
+        }
     }
     
     @objc
@@ -81,25 +101,28 @@ class GameViewController: NSViewController {
             let result = hitResults[0]
             
             // get its material
-            let material = result.node.geometry!.firstMaterial!
-            
-            // highlight it
-            SCNTransaction.begin()
-            SCNTransaction.animationDuration = 0.5
-            
-            // on completion - unhighlight
-            SCNTransaction.completionBlock = {
-                SCNTransaction.begin()
-                SCNTransaction.animationDuration = 0.5
-                
-                material.emission.contents = NSColor.black
-                
-                SCNTransaction.commit()
+//            let material = result.node.geometry!.firstMaterial!
+            if let cell = result.node as? Cell {
+                cell.state = 1
             }
             
-            material.emission.contents = NSColor.red
-            
-            SCNTransaction.commit()
+//            // highlight it
+//            SCNTransaction.begin()
+//            SCNTransaction.animationDuration = 0.5
+//
+//            // on completion - unhighlight
+//            SCNTransaction.completionBlock = {
+//                SCNTransaction.begin()
+//                SCNTransaction.animationDuration = 0.5
+//
+//                material.emission.contents = NSColor.black
+//
+//                SCNTransaction.commit()
+//            }
+//
+//            material.emission.contents = NSColor.red
+//
+//            SCNTransaction.commit()
         }
     }
 }

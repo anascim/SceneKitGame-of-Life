@@ -12,6 +12,9 @@
 		8C56AD2A236B505600EBCFC9 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C56AD29236B505600EBCFC9 /* art.scnassets */; };
 		8C56AD2C236B505C00EBCFC9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C56AD2B236B505C00EBCFC9 /* Assets.xcassets */; };
 		8C56AD2F236B505C00EBCFC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C56AD2D236B505C00EBCFC9 /* Main.storyboard */; };
+		8C56AD38236B547100EBCFC9 /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C56AD37236B547100EBCFC9 /* Grid.swift */; };
+		8C56AD3A236B547600EBCFC9 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C56AD39236B547600EBCFC9 /* Cell.swift */; };
+		8C56AD3C236B678200EBCFC9 /* GameOfLife.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C56AD3B236B678200EBCFC9 /* GameOfLife.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +26,9 @@
 		8C56AD2E236B505C00EBCFC9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8C56AD30236B505C00EBCFC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8C56AD31236B505C00EBCFC9 /* Game_of_Life.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Game_of_Life.entitlements; sourceTree = "<group>"; };
+		8C56AD37236B547100EBCFC9 /* Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
+		8C56AD39236B547600EBCFC9 /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
+		8C56AD3B236B678200EBCFC9 /* GameOfLife.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOfLife.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +63,9 @@
 			children = (
 				8C56AD25236B505600EBCFC9 /* AppDelegate.swift */,
 				8C56AD27236B505600EBCFC9 /* GameViewController.swift */,
+				8C56AD3B236B678200EBCFC9 /* GameOfLife.swift */,
+				8C56AD37236B547100EBCFC9 /* Grid.swift */,
+				8C56AD39236B547600EBCFC9 /* Cell.swift */,
 				8C56AD29236B505600EBCFC9 /* art.scnassets */,
 				8C56AD2B236B505C00EBCFC9 /* Assets.xcassets */,
 				8C56AD2D236B505C00EBCFC9 /* Main.storyboard */,
@@ -137,8 +146,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C56AD3C236B678200EBCFC9 /* GameOfLife.swift in Sources */,
 				8C56AD28236B505600EBCFC9 /* GameViewController.swift in Sources */,
+				8C56AD3A236B547600EBCFC9 /* Cell.swift in Sources */,
 				8C56AD26236B505600EBCFC9 /* AppDelegate.swift in Sources */,
+				8C56AD38236B547100EBCFC9 /* Grid.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
