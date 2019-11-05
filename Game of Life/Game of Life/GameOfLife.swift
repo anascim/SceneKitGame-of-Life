@@ -11,15 +11,9 @@ import SceneKit
 
 class GameOfLife {
     
-    var grid: Grid
-    
-    init(grid: Grid) {
-        self.grid = grid
-    }
-    
-    func step() {
+    static func nextStep(grid: Grid) -> Grid {
         var states = [Int]()
-        
+        var newGrid = Grid(width: grid.cols, height: grid.rows)
         for row in grid.cells {
             for cell in row {
                 let cellsAround = grid.getCellsAround(cell: cell)
@@ -45,12 +39,10 @@ class GameOfLife {
             }
         }
         for i in 0..<grid.cellCount {
-            print(0)
-            if let cell = grid.getCell(id: i) {
-                print(1)
+            if let cell = newGrid.getCell(id: i) {
                 cell.state = states[i]
             }
         }
+        return newGrid
     }
-    
 }

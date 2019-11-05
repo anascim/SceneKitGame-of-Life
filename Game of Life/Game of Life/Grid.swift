@@ -9,7 +9,7 @@
 import Foundation
 import SceneKit
 
-class Grid : SCNNode {
+class Grid {
     
     var cells = [[Cell]]()
     var cellCount: Int {
@@ -22,32 +22,20 @@ class Grid : SCNNode {
     var cols: Int {
         return aspect.0
     }
-    var cellSize: CGFloat
+    
+    static var count: Int = 0
     
     init(width: Int, height: Int) {
         self.aspect = (width, height)
-        self.cellSize = 1
-        super.init()
-        createCells()
-        self.position.x = CGFloat(width)/2 * cellSize
-        self.position.z = CGFloat(height)/2 * cellSize
-    }
-    
-    func createCells() {
-        for i in 0..<rows {
-            var row = [Cell]()
-            for j in 0..<cols {
-                let cell = Cell(id: i * cols + j, x: j, y: i, cubeSize: cellSize)
-                row.append(cell)
-                self.addChildNode(cell)
+        
+        for row in 0..<height {
+            var cellRow = [Cell]()
+            for col in 0..<width {
+                cellRow.append(Cell(id: row * cols + col, x: col, y: row, state: 0))
             }
-//            var str: String = ""
-//            for c in row {
-//                str.append("\(c.id) ")
-//            }
-//            print(str)
-            cells.append(row)
+            cells.append(cellRow)
         }
+        Grid.count += 1
     }
     
     func getCell(id: Int) -> Cell? {

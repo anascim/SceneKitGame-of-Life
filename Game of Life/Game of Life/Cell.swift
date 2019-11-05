@@ -9,7 +9,7 @@
 import Foundation
 import SceneKit
 
-class Cell : SCNNode {
+class Cell {
     
     let id: Int
     let coord: (Int, Int) //(x/col, y/row)
@@ -19,29 +19,34 @@ class Cell : SCNNode {
     var col: Int {
         return coord.0
     }
-    var state: Int { // 0 dead, 1 alive
-        didSet {
-            if state == 0 {
-                self.geometry!.firstMaterial?.diffuse.contents = deadColor
-            } else {
-                self.geometry!.firstMaterial?.diffuse.contents = aliveColor
-            }
-        }
-    }
-    let aliveColor: CGColor = .white
-    let deadColor: CGColor = .black
+    var state: Int
     
-    init(id: Int, x: Int, y: Int, cubeSize: CGFloat) {
+    init(id: Int, x: Int, y: Int, state: Int) {
         self.id = id
         self.coord = (x, y)
-        self.state = 0
-        super.init()
-        self.geometry = SCNBox(width: cubeSize, height: cubeSize, length: cubeSize, chamferRadius: 0)
-        self.geometry!.firstMaterial?.diffuse.contents = deadColor
-        self.position = SCNVector3(CGFloat(col) * -cubeSize, 0, CGFloat(row) * -cubeSize)
+        self.state = state
+//        super.init()
+//        self.geometry = SCNBox(width: cubeSize, height: cubeSize, length: cubeSize, chamferRadius: 0)
+//        self.geometry!.firstMaterial?.diffuse.contents = deadColor
+//        self.position = SCNVector3(CGFloat(col) * -cubeSize, 0, CGFloat(row) * -cubeSize)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
+extension Cell : Equatable {
+    static func == (lhs: Cell, rhs: Cell) -> Bool {
+        return lhs.id == rhs.id
+    }
+}
+
+extension Cell : Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+        hasher.combine(coord.0)
+        hasher.combine(coord.1)
+    }
+}
+
