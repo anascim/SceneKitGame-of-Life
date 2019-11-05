@@ -14,8 +14,8 @@ class GameScene : SCNScene, SCNSceneRendererDelegate {
     let cameraNode = SCNNode()
     let lightNode = SCNNode()
     let ambientLightNode = SCNNode()
-    let pool = Pool(size: 1000, cubeSize: 1)
-    var lastGrid = Grid(width: 100, height: 100)
+    let pool = Pool(size: 2000, cubeSize: 1)
+    var lastGrid = Grid(width: 200, height: 200)
     var running = false
     
     override init() {
@@ -57,27 +57,26 @@ class GameScene : SCNScene, SCNSceneRendererDelegate {
 //                lastGrid.cells[row][col].state = 1
 //            }
 //        }
-        lastGrid.cells[25][25].state = 1
-        lastGrid.cells[26][25].state = 1
-        lastGrid.cells[26][26].state = 1
-        lastGrid.cells[27][26].state = 1
-        lastGrid.cells[26][27].state = 1
+        lastGrid.cells[25][25].isAlive = true
+        lastGrid.cells[26][25].isAlive = true
+        lastGrid.cells[26][26].isAlive = true
+        lastGrid.cells[27][26].isAlive = true
+        lastGrid.cells[26][27].isAlive = true
         
-        lastGrid.cells[0][0].state = 1
-        lastGrid.cells[49][0].state = 1
-        lastGrid.cells[0][49].state = 1
-        lastGrid.cells[49][49].state = 1
+        lastGrid.cells[0][0].isAlive = true
+        lastGrid.cells[49][0].isAlive = true
+        lastGrid.cells[0][49].isAlive = true
+        lastGrid.cells[49][49].isAlive = true
         
         renderGrid(grid: lastGrid, y: 0)
     }
     
     func renderGrid(grid: Grid, y: CGFloat) {
 
-
     // create cubes
         for row in 0..<grid.rows {
             for col in 0..<grid.cols {
-                if grid.cells[row][col].state == 1 {
+                if grid.cells[row][col].isAlive {
                     let cube = pool.getAvailableCube()
                     cube.position.x = -CGFloat(col) + CGFloat(grid.cols)/2 - 0.5
                     cube.position.z = -CGFloat(row) + CGFloat(grid.rows)/2 - 0.5
@@ -115,7 +114,8 @@ class GameScene : SCNScene, SCNSceneRendererDelegate {
     }
     
     func step() {
-        lastGrid = GameOfLife.nextStep(grid: self.lastGrid)
+        GameOfLife.nextStep(grid: &self.lastGrid)
+        Grid.count += 1
         renderGrid(grid: lastGrid, y: CGFloat(Grid.count))
     }
 }

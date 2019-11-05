@@ -31,7 +31,7 @@ class Grid {
         for row in 0..<height {
             var cellRow = [Cell]()
             for col in 0..<width {
-                cellRow.append(Cell(id: row * cols + col, x: col, y: row, state: 0))
+                cellRow.append(Cell(id: row * cols + col, x: col, y: row, alive: false))
             }
             cells.append(cellRow)
         }

@@ -38,14 +38,3 @@ class Pool {
         return cube
     }
 }
-//
-//struct Cube {
-//    var index: Int
-//    var cube: SCNNode
-//    var isActive = false
-//
-//    init(index: Int) {
-//        self.index = index
-//        self.cube = SCNNode(geometry: SCNBox(width: 1, height: 1, length: 1, chamferRadius: 0))
-//    }
-//}

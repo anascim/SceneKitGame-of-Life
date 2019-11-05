@@ -26,7 +26,7 @@ class CellFrame : SCNNode {
         // create cubes
         for row in 0..<grid.rows {
             for col in 0..<grid.cols {
-                if grid.cells[row][col].state == 1 {
+                if grid.cells[row][col].isAlive {
                     let cube = pool.getAvailableCube()
                     cube.position.x = -CGFloat(col)
                     cube.position.z = -CGFloat(row)
