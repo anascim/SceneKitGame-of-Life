@@ -14,4 +14,13 @@ class Time {
     static var timeSin: TimeInterval {
         return sin(currentTime)
     }
+    static var timeCos: TimeInterval {
+        return cos(currentTime)
+    }
+    static var normSin: CGFloat {
+        return CGFloat(timeSin/2 + 0.5)
+    }
+    static var normCos: CGFloat {
+        return CGFloat(timeCos/2 + 0.5)
+    }
 }

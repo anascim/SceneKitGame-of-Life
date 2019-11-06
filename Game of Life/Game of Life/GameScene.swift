@@ -14,8 +14,8 @@ class GameScene : SCNScene, SCNSceneRendererDelegate {
     let cameraNode = SCNNode()
     let lightNode = SCNNode()
     let ambientLightNode = SCNNode()
-    let pool = Pool(size: 2000, cubeSize: 1)
-    var lastGrid = Grid(width: 100, height: 100)
+    let pool = Pool(size: 6000, cubeSize: 1)
+    var lastGrid = Grid(width: 50, height: 50)
     var running = false
     
     override init() {
@@ -36,7 +36,7 @@ class GameScene : SCNScene, SCNSceneRendererDelegate {
 
         // place the camera
         cameraNode.position = SCNVector3(x: 0, y: 20, z: 40)
-        cameraNode.look(at: SCNVector3(x: 0, y: 0, z: 5))
+        cameraNode.look(at: SCNVector3(x: 0, y: 0, z: 15))
     
         // create and add a light to the scene
         lightNode.light = SCNLight()
@@ -50,23 +50,23 @@ class GameScene : SCNScene, SCNSceneRendererDelegate {
         ambientLightNode.light!.color = NSColor.darkGray
         self.rootNode.addChildNode(ambientLightNode)
         
-        lastGrid.cells[55][55].isAlive = true
-        lastGrid.cells[56][55].isAlive = true
-        lastGrid.cells[56][56].isAlive = true
-        lastGrid.cells[57][56].isAlive = true
-        lastGrid.cells[56][57].isAlive = true
+        lastGrid.cells[25][25].isAlive = true
+        lastGrid.cells[26][25].isAlive = true
+        lastGrid.cells[26][26].isAlive = true
+        lastGrid.cells[27][26].isAlive = true
+        lastGrid.cells[26][27].isAlive = true
         
         lastGrid.cells[0][0].isAlive = true
-        lastGrid.cells[99][0].isAlive = true
-        lastGrid.cells[0][99].isAlive = true
-        lastGrid.cells[99][99].isAlive = true
+        lastGrid.cells[49][0].isAlive = true
+        lastGrid.cells[0][49].isAlive = true
+        lastGrid.cells[49][49].isAlive = true
         
         renderGrid(grid: lastGrid, y: 0)
     }
     
+    var renderCount: Int = 0
     func renderGrid(grid: Grid, y: CGFloat) {
-
-    // create cubes
+        var cubes = [SCNNode]()
         for row in 0..<grid.rows {
             for col in 0..<grid.cols {
                 if grid.cells[row][col].isAlive {
@@ -74,11 +74,15 @@ class GameScene : SCNScene, SCNSceneRendererDelegate {
                     cube.position.x = -CGFloat(col) + CGFloat(grid.cols)/2 - 0.5
                     cube.position.z = -CGFloat(row) + CGFloat(grid.rows)/2 - 0.5
                     cube.position.y = y
-                    cube.geometry?.firstMaterial?.diffuse.contents = CGColor.white
+                    cubes.append(cube)
                     self.rootNode.addChildNode(cube)
                 }
             }
         }
+        for c in cubes {
+            c.geometry = pool.coloredCubes[renderCount % pool.coloredCubes.count]
+        }
+        renderCount += 1
     }
     
     func spaceKey() {
