@@ -14,7 +14,7 @@ class GameScene : SCNScene, SCNSceneRendererDelegate {
     let cameraNode = SCNNode()
     let lightNode = SCNNode()
     let ambientLightNode = SCNNode()
-    let pool = Pool(size: 2000, cubeSize: 1)
+    let pool = Pool(size: 20000, cubeSize: 1)
     var lastGrid = Grid(width: 100, height: 100)
     var running = false
     
@@ -35,8 +35,8 @@ class GameScene : SCNScene, SCNSceneRendererDelegate {
         self.rootNode.addChildNode(cameraNode)
 
         // place the camera
-        cameraNode.position = SCNVector3(x: 0, y: 20, z: 40)
-        cameraNode.look(at: SCNVector3(x: 0, y: 0, z: 5))
+        cameraNode.position = SCNVector3(x: 0, y: 100, z: 10)
+        cameraNode.look(at: SCNVector3(x: 0, y: 0, z: 0))
     
         // create and add a light to the scene
         lightNode.light = SCNLight()
@@ -50,16 +50,26 @@ class GameScene : SCNScene, SCNSceneRendererDelegate {
         ambientLightNode.light!.color = NSColor.darkGray
         self.rootNode.addChildNode(ambientLightNode)
         
-        lastGrid.cells[55][55].isAlive = true
-        lastGrid.cells[56][55].isAlive = true
-        lastGrid.cells[56][56].isAlive = true
-        lastGrid.cells[57][56].isAlive = true
-        lastGrid.cells[56][57].isAlive = true
+        #if true
+        for row in lastGrid.cells {
+            for c in row {
+                c.isAlive = true
+            }
+        }
+        #endif
+        
+        #if false
+        lastGrid.cells[5][5].isAlive = true
+        lastGrid.cells[6][5].isAlive = true
+        lastGrid.cells[6][6].isAlive = true
+        lastGrid.cells[7][6].isAlive = true
+        lastGrid.cells[6][7].isAlive = true
         
         lastGrid.cells[0][0].isAlive = true
-        lastGrid.cells[99][0].isAlive = true
-        lastGrid.cells[0][99].isAlive = true
-        lastGrid.cells[99][99].isAlive = true
+        lastGrid.cells[9][0].isAlive = true
+        lastGrid.cells[0][9].isAlive = true
+        lastGrid.cells[9][9].isAlive = true
+        #endif
         
         renderGrid(grid: lastGrid, y: 0)
     }
@@ -95,9 +105,6 @@ class GameScene : SCNScene, SCNSceneRendererDelegate {
         Time.currentTime = time
         if !self.running { return }
         if nextTime < time {
-            cameraNode.position.y += 1
-            ambientLightNode.position.y += 1
-            lightNode.position.y += 1
             self.step()
             nextTime = time + interval
         }
