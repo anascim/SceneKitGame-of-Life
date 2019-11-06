@@ -18,6 +18,7 @@
 		8C56AD3E236CADB800EBCFC9 /* CellFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C56AD3D236CADB800EBCFC9 /* CellFrame.swift */; };
 		8C56AD42236CB9D900EBCFC9 /* Pool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C56AD41236CB9D900EBCFC9 /* Pool.swift */; };
 		8C56AD44236DB79A00EBCFC9 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C56AD43236DB79A00EBCFC9 /* GameScene.swift */; };
+		8CEB41D6237219F400DA47BF /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEB41D5237219F400DA47BF /* Time.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		8C56AD3D236CADB800EBCFC9 /* CellFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellFrame.swift; sourceTree = "<group>"; };
 		8C56AD41236CB9D900EBCFC9 /* Pool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pool.swift; sourceTree = "<group>"; };
 		8C56AD43236DB79A00EBCFC9 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		8CEB41D5237219F400DA47BF /* Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +76,7 @@
 				8C56AD3D236CADB800EBCFC9 /* CellFrame.swift */,
 				8C56AD37236B547100EBCFC9 /* Grid.swift */,
 				8C56AD41236CB9D900EBCFC9 /* Pool.swift */,
+				8CEB41D5237219F400DA47BF /* Time.swift */,
 				8C56AD39236B547600EBCFC9 /* Cell.swift */,
 				8C56AD29236B505600EBCFC9 /* art.scnassets */,
 				8C56AD2B236B505C00EBCFC9 /* Assets.xcassets */,
@@ -161,6 +164,7 @@
 				8C56AD3A236B547600EBCFC9 /* Cell.swift in Sources */,
 				8C56AD26236B505600EBCFC9 /* AppDelegate.swift in Sources */,
 				8C56AD38236B547100EBCFC9 /* Grid.swift in Sources */,
+				8CEB41D6237219F400DA47BF /* Time.swift in Sources */,
 				8C56AD42236CB9D900EBCFC9 /* Pool.swift in Sources */,
 				8C56AD3E236CADB800EBCFC9 /* CellFrame.swift in Sources */,
 			);

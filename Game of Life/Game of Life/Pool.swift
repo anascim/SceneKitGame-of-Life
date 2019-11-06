@@ -35,6 +35,7 @@ class Pool {
         let cube = self.cubes[pointer]
         cube.removeFromParentNode()
         self.pointer += 1
+        cube.geometry?.firstMaterial?.diffuse.contents = CGColor(red: CGFloat(Time.timeSin), green: 0.0, blue: 0.7, alpha: 1.0)
         return cube
     }
 }

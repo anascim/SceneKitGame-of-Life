@@ -16,42 +16,50 @@ class GameViewController: NSViewController {
     var paused: Bool = true
     let scene = GameScene()
     var pool: Pool!
+    @IBOutlet weak var sceneView: SCNView!
+    
+    @IBOutlet weak var stepBtn: NSButton!
+    @IBAction func clickStepBtn(_ sender: Any) {
+        scene.step()
+    }
+    
+    @IBOutlet weak var runBtn: NSButton!
+    @IBAction func clickRunBtn(_ sender: Any) {
+        if !scene.running {
+            scene.running = true
+            runBtn.title = "Stop"
+        } else {
+            scene.running = false
+            runBtn.title = "Run"
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        // create a new scene
-        
-        // retrieve the SCNView
-        let scnView = self.view as! SCNView
-        
-        
-        // set the scene to the view
-        scnView.scene = scene
-        scnView.loops = true
-        scnView.isPlaying = true
-        scnView.delegate = scene
-        scnView.pointOfView = scene.cameraNode
+        sceneView.scene = scene
+        sceneView.loops = true
+        sceneView.isPlaying = true
+        sceneView.delegate = scene
+        sceneView.pointOfView = scene.cameraNode
         
         // allows the user to manipulate the camera
-        scnView.allowsCameraControl = true
+//        sceneView.allowsCameraControl = true
         
         // show statistics such as fps and timing information
-        scnView.showsStatistics = true
+        sceneView.showsStatistics = true
         
         // configure the view
-        scnView.backgroundColor = NSColor.black
+        sceneView.backgroundColor = NSColor.black
         
         // Add a click gesture recognizer
         let clickGesture = NSClickGestureRecognizer(target: self, action: #selector(handleClick(_:)))
-        var gestureRecognizers = scnView.gestureRecognizers
+        var gestureRecognizers = sceneView.gestureRecognizers
         gestureRecognizers.insert(clickGesture, at: 0)
-        scnView.gestureRecognizers = gestureRecognizers
+        sceneView.gestureRecognizers = gestureRecognizers
     }
     
     override func keyDown(with event: NSEvent) {
-//        print("keyCode: \(event.keyCode)")
         if event.keyCode == 49 {
             scene.spaceKey()
         }
@@ -62,20 +70,12 @@ class GameViewController: NSViewController {
     
     @objc
     func handleClick(_ gestureRecognizer: NSGestureRecognizer) {
-        // retrieve the SCNView
-        let scnView = self.view as! SCNView
-        
-        // check what nodes are clicked
-        let p = gestureRecognizer.location(in: scnView)
-        let hitResults = scnView.hitTest(p, options: [:])
+        let p = gestureRecognizer.location(in: sceneView)
+        let hitResults = sceneView.hitTest(p, options: [:])
         // check that we clicked on at least one object
         if hitResults.count > 0 {
             // retrieved the first clicked object
             let result = hitResults[0]
-            
-//            if let cell = result.node as? Cell {
-//                cell.state = 1
-//            }
         }
     }
 }
