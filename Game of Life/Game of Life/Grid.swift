@@ -9,8 +9,10 @@
 import Foundation
 import SceneKit
 
-class Grid {
+class Grid : SCNNode {
     
+    static var cubeGeometry = SCNBox(width: 0.9, height: 0.9, length: 0.9, chamferRadius: 0.05)
+    static var aliveGeometry = SCNBox(width: 0.9, height: 0.9, length: 0.9, chamferRadius: 0.05)
     var cells = [[Cell]]()
     var cellCount: Int {
         return rows*cols
@@ -23,19 +25,25 @@ class Grid {
         return aspect.0
     }
     
-    static var count: Int = 0
-    
     init(width: Int, height: Int) {
         self.aspect = (width, height)
         
+        super.init()
         for row in 0..<height {
             var cellRow = [Cell]()
             for col in 0..<width {
-                cellRow.append(Cell(id: row * cols + col, x: col, y: row, alive: false))
+                let cell = Cell(id: row * self.cols + col, x: col, y: row, alive: false)
+                cell.position = SCNVector3(CGFloat(col), 0, CGFloat(row))
+                cellRow.append(cell)
+                self.addChildNode(cell)
             }
-            cells.append(cellRow)
+            self.cells.append(cellRow)
         }
-        Grid.count += 1
+        self.position.x = -CGFloat(self.cols)/2 + 0.5
+        self.position.z = -CGFloat(self.rows)/2 + 0.5
+        Grid.cubeGeometry.firstMaterial?.diffuse.contents = CGColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.2)
+        Grid.aliveGeometry.firstMaterial?.diffuse.contents = CGColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.8)
+        Grid.aliveGeometry.firstMaterial?.emission.contents = CGColor.white
     }
     
     func getCell(id: Int) -> Cell? {
@@ -81,6 +89,14 @@ class Grid {
             cells.append(c)
         }
         return cells
+    }
+    
+    func killCells() {
+        for row in cells {
+            for c in row {
+                c.isAlive = false
+            }
+        }
     }
     
     required init?(coder: NSCoder) {

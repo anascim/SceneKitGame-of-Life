@@ -8,6 +8,7 @@
 
 import Foundation
 import SceneKit
+import SwiftUI
 
 class Pool {
     
@@ -21,13 +22,28 @@ class Pool {
         }
     }
     let cubeSize: CGFloat
+    let cubeGeometry: SCNBox
+    var coloredCubes: [SCNBox]
     
-    
-    init(size: Int, cubeSize: CGFloat) {
+    init(size: Int, cubeSize: CGFloat, colors: [NSColor]) {
         self.size = size
         self.cubeSize = cubeSize
+        self.cubeGeometry = SCNBox(width: cubeSize, height: cubeSize, length: cubeSize, chamferRadius: 0)
+        self.coloredCubes = [SCNBox]()
         for _ in 0..<size {
-            self.cubes.append(SCNNode(geometry: SCNBox(width: cubeSize, height: cubeSize, length: cubeSize, chamferRadius: 0)))
+            self.cubes.append(SCNNode(geometry: self.cubeGeometry))
+        }
+        
+        for i in 0..<colors.count {
+            let copy = SCNBox(width: cubeSize, height: cubeSize, length: cubeSize, chamferRadius: 0)
+            copy.firstMaterial?.diffuse.contents = colors[i]
+            self.coloredCubes.append(copy)
+        }
+    }
+    
+    func removeNodes() {
+        for c in cubes {
+            c.removeFromParentNode()
         }
     }
     
@@ -35,7 +51,6 @@ class Pool {
         let cube = self.cubes[pointer]
         cube.removeFromParentNode()
         self.pointer += 1
-        cube.geometry?.firstMaterial?.diffuse.contents = CGColor(red: CGFloat(Time.timeSin), green: 0.0, blue: 0.7, alpha: 1.0)
         return cube
     }
 }

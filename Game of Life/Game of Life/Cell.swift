@@ -9,7 +9,7 @@
 import Foundation
 import SceneKit
 
-class Cell {
+class Cell : SCNNode {
     
     let id: Int
     let coord: (Int, Int) //(x/col, y/row)
@@ -19,7 +19,16 @@ class Cell {
     var col: Int {
         return coord.0
     }
-    var isAlive: Bool
+    var isAlive: Bool {
+        didSet {
+            if isAlive {
+                self.geometry = Grid.aliveGeometry
+            } else {
+                self.geometry = Grid.cubeGeometry
+            }
+        }
+    }
+    
     var neighboursAlive: UInt8
     
     init(id: Int, x: Int, y: Int, alive: Bool) {
@@ -27,24 +36,12 @@ class Cell {
         self.coord = (x, y)
         self.isAlive = alive
         self.neighboursAlive = 0
+        super.init()
+        self.geometry = Grid.cubeGeometry
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-}
-
-extension Cell : Equatable {
-    static func == (lhs: Cell, rhs: Cell) -> Bool {
-        return lhs.id == rhs.id
-    }
-}
-
-extension Cell : Hashable {
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-        hasher.combine(coord.0)
-        hasher.combine(coord.1)
     }
 }
 

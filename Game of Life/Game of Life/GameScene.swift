@@ -14,11 +14,32 @@ class GameScene : SCNScene, SCNSceneRendererDelegate {
     let cameraNode = SCNNode()
     let lightNode = SCNNode()
     let ambientLightNode = SCNNode()
-    let pool = Pool(size: 20000, cubeSize: 1)
-    var lastGrid = Grid(width: 100, height: 100)
-    var running = false
+    let pool: Pool
+    var grid = Grid(width: 50, height: 50)
+    var running = false {
+        didSet {
+            if running {
+                self.nextTime = 0
+                hideTouchGrid()
+            } else {
+                showTouchGrid()
+            }
+        }
+    }
     
-    override init() {
+    var initCameraPos = SCNVector3(0, 0, 0)
+    var initLightNodePos = SCNVector3(0, 0, 0)
+    var initGridPos = SCNVector3(0, 0, 0)
+    var cameraPositionAnchor = SCNVector3(0, 0, 0)
+    var cameraRotationAnchor = simd_quatf(ix: 0, iy: 0, iz: 0, r: 1)
+    var sideCameraRotation = simd_quatf(ix: 0, iy: 0, iz: 0, r: 1)
+    var upCameraRotation = simd_quatf(angle: 0, axis: SIMD3(x: -1, y: 0, z: 0))
+    
+    
+
+    
+    init(pool: Pool) {
+        self.pool = pool
         super.init()
         self.setupScene()
     }
@@ -34,14 +55,16 @@ class GameScene : SCNScene, SCNSceneRendererDelegate {
         cameraNode.camera!.zFar = 500
         self.rootNode.addChildNode(cameraNode)
 
-        // place the camera
-        cameraNode.position = SCNVector3(x: 0, y: 100, z: 10)
-        cameraNode.look(at: SCNVector3(x: 0, y: 0, z: 0))
+        cameraNode.position = SCNVector3(x: 0, y: 20, z: 40)
+        initCameraPos = cameraNode.position
+        cameraNode.look(at: SCNVector3(x: 0, y: 0, z: 15))
+        sideCameraRotation = cameraNode.simdOrientation
     
         // create and add a light to the scene
         lightNode.light = SCNLight()
         lightNode.light!.type = .omni
         lightNode.position = SCNVector3(x: 0, y: 30, z: 0)
+        initLightNodePos = lightNode.position
         self.rootNode.addChildNode(lightNode)
         
         // create and add an ambient light to the scene
@@ -50,48 +73,41 @@ class GameScene : SCNScene, SCNSceneRendererDelegate {
         ambientLightNode.light!.color = NSColor.darkGray
         self.rootNode.addChildNode(ambientLightNode)
         
-        #if true
-        for row in lastGrid.cells {
-            for c in row {
-                c.isAlive = true
-            }
-        }
-        #endif
-        
-        #if false
-        lastGrid.cells[5][5].isAlive = true
-        lastGrid.cells[6][5].isAlive = true
-        lastGrid.cells[6][6].isAlive = true
-        lastGrid.cells[7][6].isAlive = true
-        lastGrid.cells[6][7].isAlive = true
-        
-        lastGrid.cells[0][0].isAlive = true
-        lastGrid.cells[9][0].isAlive = true
-        lastGrid.cells[0][9].isAlive = true
-        lastGrid.cells[9][9].isAlive = true
-        #endif
-        
-        renderGrid(grid: lastGrid, y: 0)
+        initGridPos = grid.position
+        showTouchGrid()
     }
     
-    func renderGrid(grid: Grid, y: CGFloat) {
-
-    // create cubes
+    func showTouchGrid() {
+        self.rootNode.addChildNode(grid)
+    }
+    
+    func hideTouchGrid() {
+        grid.removeFromParentNode()
+    }
+    
+    var renderCount: Int = 0
+    func renderGrid(grid: Grid) {
+        var cubes = [SCNNode]()
         for row in 0..<grid.rows {
             for col in 0..<grid.cols {
                 if grid.cells[row][col].isAlive {
                     let cube = pool.getAvailableCube()
-                    cube.position.x = -CGFloat(col) + CGFloat(grid.cols)/2 - 0.5
-                    cube.position.z = -CGFloat(row) + CGFloat(grid.rows)/2 - 0.5
-                    cube.position.y = y
-                    cube.geometry?.firstMaterial?.diffuse.contents = CGColor.white
+                    cube.position = grid.cells[row][col].worldPosition
+                    cubes.append(cube)
                     self.rootNode.addChildNode(cube)
                 }
             }
         }
+        for c in cubes {
+            c.geometry = pool.coloredCubes[renderCount % pool.coloredCubes.count]
+        }
+        renderCount += 1
     }
     
     func spaceKey() {
+        if running {
+            running = false
+        }
         self.step()
     }
     
@@ -99,10 +115,29 @@ class GameScene : SCNScene, SCNSceneRendererDelegate {
         self.running = !self.running
     }
     
-    let interval: TimeInterval = 0.01
+    func reset() {
+        pool.removeNodes()
+        grid.killCells()
+        grid.position = initGridPos
+        cameraNode.position = initCameraPos
+        lightNode.position = initLightNodePos
+        running = false
+    }
+    
+    var interval: TimeInterval = 0.05
     var nextTime: TimeInterval = 0
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
         Time.currentTime = time
+        cameraPositionAnchor = SCNVector3(x: initCameraPos.x, y: self.grid.position.y + initCameraPos.y, z: initCameraPos.z)
+//        if running {
+//            cameraPositionAnchor = SCNVector3(x: initCameraPos.x, y: self.grid.position.y + initCameraPos.y, z: initCameraPos.z)
+////            cameraRotationAnchor = sideCameraRotation
+//        } else {
+//            cameraPositionAnchor = SCNVector3(x: grid.position.x, y: self.grid.position.y + 50, z: grid.position.z)
+////            cameraRotationAnchor = upCameraRotation
+//        }
+        cameraNode.position = lerp(from: cameraNode.position, to: cameraPositionAnchor, pct: 0.05)
+//        cameraNode.simdOrientation = simd_slerp(cameraNode.simdOrientation, cameraRotationAnchor, 0.001)
         if !self.running { return }
         if nextTime < time {
             self.step()
@@ -111,8 +146,25 @@ class GameScene : SCNScene, SCNSceneRendererDelegate {
     }
     
     func step() {
-        GameOfLife.nextStep(grid: &self.lastGrid)
-        Grid.count += 1
-        renderGrid(grid: lastGrid, y: CGFloat(Grid.count))
+        GameOfLife.nextStep(grid: &self.grid)
+        grid.position.y += 1
+        lightNode.position.y += 1
+        ambientLightNode.position.y += 1
+        renderGrid(grid: grid)
+    }
+    
+    func lerp(from: SCNVector3, to: SCNVector3, pct: CGFloat) -> SCNVector3 {
+        if pct > 1 { return to }
+        if pct < 0 { return from }
+        let x: CGFloat = from.x*(1-pct) + to.x*pct
+        let y: CGFloat = from.y*(1-pct) + to.y*pct
+        let z: CGFloat = from.z*(1-pct) + to.z*pct
+        return SCNVector3(x: x, y: y, z: z)
+    }
+    
+    func lerp(from: CGFloat, to: CGFloat, pct: CGFloat) -> CGFloat {
+        if pct > 1 { return to }
+        if pct < 0 { return from }
+        return from*(1-pct) + to*pct
     }
 }

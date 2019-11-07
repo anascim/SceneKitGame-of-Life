@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14868"/>
-        <plugIn identifier="com.apple.SceneKitIBPlugin" version="14868"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15505"/>
+        <plugIn identifier="com.apple.SceneKitIBPlugin" version="15505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -656,20 +656,31 @@
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-46" y="-156"/>
+            <point key="canvasLocation" x="65" y="-138"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="Tn1-26-igq">
             <objects>
                 <viewController id="VET-lN-4yP" customClass="GameViewController" customModule="Game_of_Life" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="jAL-Pd-4P1">
-                        <rect key="frame" x="0.0" y="0.0" width="840" height="540"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1280" height="720"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <sceneView loops="NO" preferredRenderingAPI="-1" id="RvT-eo-GD2">
-                                <rect key="frame" x="0.0" y="70" width="840" height="470"/>
+                                <rect key="frame" x="0.0" y="70" width="1280" height="650"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </sceneView>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Djb-Kp-hkF">
+                                <rect key="frame" x="137" y="22" width="64" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Run" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="hol-0o-grI">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="clickRunBtn:" target="VET-lN-4yP" id="V9T-FX-LxD"/>
+                                </connections>
+                            </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oOP-R5-47Z">
                                 <rect key="frame" x="33" y="22" width="68" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -681,28 +692,168 @@
                                     <action selector="clickStepBtn:" target="VET-lN-4yP" id="72b-u9-Ab0"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Djb-Kp-hkF">
-                                <rect key="frame" x="117" y="22" width="64" height="32"/>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kKk-5k-DoZ">
+                                <rect key="frame" x="290" y="29" width="96" height="21"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="0.05" drawsBackground="YES" id="Z1v-Pf-mSS">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <action selector="speedTextFieldA:" target="VET-lN-4yP" id="nrj-Hi-gAV"/>
+                                </connections>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OOM-Oq-fMi">
+                                <rect key="frame" x="252" y="32" width="32" height="16"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Rate" id="LWp-hD-V5h">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JFF-qW-pKL">
+                                <rect key="frame" x="447" y="32" width="47" height="16"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Palette" id="WUV-2J-rlu">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u91-RO-Pq6">
+                                <rect key="frame" x="500" y="38" width="24" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Run" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="hol-0o-grI">
+                                <color key="color" red="1" green="0.0" blue="0.056107677723829852" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="colorWell1A:" target="VET-lN-4yP" id="8df-RA-Dkf"/>
+                                </connections>
+                            </colorWell>
+                            <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gnF-vz-V0r">
+                                <rect key="frame" x="532" y="39" width="24" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <color key="color" red="1" green="0.6970610832189883" blue="0.00019225223670882308" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="colorWell3A:" target="VET-lN-4yP" id="Hqd-tm-yfG"/>
+                                </connections>
+                            </colorWell>
+                            <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hvw-kU-Zq8">
+                                <rect key="frame" x="564" y="39" width="24" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <color key="color" red="0.72686433306230569" green="0.98879855871200562" blue="0.31975748104741503" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <connections>
+                                    <action selector="colorWell5A:" target="VET-lN-4yP" id="LTw-8I-HtV"/>
+                                </connections>
+                            </colorWell>
+                            <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Ku-Vu-iyd">
+                                <rect key="frame" x="596" y="39" width="24" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <color key="color" red="0.42543825222571846" green="0.98436373472213745" blue="0.90334384922757383" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <connections>
+                                    <action selector="colorWell7A:" target="VET-lN-4yP" id="hfJ-E7-K7a"/>
+                                </connections>
+                            </colorWell>
+                            <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BeM-9U-m9f">
+                                <rect key="frame" x="628" y="39" width="24" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <color key="color" red="0.35489222746167026" green="0.28462633967323148" blue="0.96138554811477661" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <connections>
+                                    <action selector="colorWell9A:" target="VET-lN-4yP" id="zqf-R0-7SL"/>
+                                </connections>
+                            </colorWell>
+                            <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wh3-M5-adJ">
+                                <rect key="frame" x="660" y="39" width="24" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <color key="color" red="0.87435406841814689" green="0.28667959138116073" blue="0.96684795618057251" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <connections>
+                                    <action selector="colorWell11A:" target="VET-lN-4yP" id="ErZ-YY-VzT"/>
+                                </connections>
+                            </colorWell>
+                            <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0o5-u9-HC6">
+                                <rect key="frame" x="500" y="7" width="24" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <color key="color" red="0.9175150990486145" green="0.47912311916929307" blue="0.16051237156109888" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <connections>
+                                    <action selector="colorWell2A:" target="VET-lN-4yP" id="g8T-tJ-GJN"/>
+                                </connections>
+                            </colorWell>
+                            <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hzM-fb-JFl">
+                                <rect key="frame" x="532" y="8" width="24" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <color key="color" red="0.95532423257827759" green="0.82303764848598815" blue="0.27708115953870271" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <connections>
+                                    <action selector="colorWell4A:" target="VET-lN-4yP" id="Rdi-Oc-KDa"/>
+                                </connections>
+                            </colorWell>
+                            <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nh3-Io-oj8">
+                                <rect key="frame" x="564" y="8" width="24" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <color key="color" red="0.37838714316420208" green="0.98879855871200562" blue="0.39983921180078213" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <connections>
+                                    <action selector="colorWell6A:" target="VET-lN-4yP" id="qEG-Rr-cxz"/>
+                                </connections>
+                            </colorWell>
+                            <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Jn-bb-hPF">
+                                <rect key="frame" x="596" y="9" width="24" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <color key="color" red="0.34411416501093867" green="0.61011472254804267" blue="0.98436373472213745" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <connections>
+                                    <action selector="colorWell8A:" target="VET-lN-4yP" id="RFT-d6-qCd"/>
+                                </connections>
+                            </colorWell>
+                            <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="svc-GG-tJ1">
+                                <rect key="frame" x="628" y="8" width="24" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <color key="color" red="0.55101110721123148" green="0.28367062254465325" blue="0.96138554811477661" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <connections>
+                                    <action selector="colorWell10A:" target="VET-lN-4yP" id="HMB-kH-DJS"/>
+                                </connections>
+                            </colorWell>
+                            <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6p3-dz-YiW">
+                                <rect key="frame" x="660" y="8" width="24" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <color key="color" red="0.96684795618057251" green="0.30332067004754953" blue="0.64418387590803106" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <connections>
+                                    <action selector="coloWell12A:" target="VET-lN-4yP" id="Zx6-zq-7a6"/>
+                                </connections>
+                            </colorWell>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sab-2g-2PE">
+                                <rect key="frame" x="1191" y="22" width="75" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Reset" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="oCs-p8-dCa">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="clickRunBtn:" target="VET-lN-4yP" id="V9T-FX-LxD"/>
+                                    <action selector="resetBtnA:" target="VET-lN-4yP" id="Jhd-Ok-wOa"/>
                                 </connections>
                             </button>
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="colorWell1" destination="u91-RO-Pq6" id="htY-Xn-SfW"/>
+                        <outlet property="colorWell10" destination="svc-GG-tJ1" id="yeY-7h-AZK"/>
+                        <outlet property="colorWell11" destination="Wh3-M5-adJ" id="vEZ-hm-bdM"/>
+                        <outlet property="colorWell12" destination="6p3-dz-YiW" id="C8K-Qd-6Dp"/>
+                        <outlet property="colorWell2" destination="0o5-u9-HC6" id="g0i-Lf-i6w"/>
+                        <outlet property="colorWell3" destination="gnF-vz-V0r" id="jNV-jy-3y5"/>
+                        <outlet property="colorWell4" destination="hzM-fb-JFl" id="iEy-Ak-Gaq"/>
+                        <outlet property="colorWell5" destination="Hvw-kU-Zq8" id="9VK-B1-vjy"/>
+                        <outlet property="colorWell6" destination="nh3-Io-oj8" id="jCq-iy-zjd"/>
+                        <outlet property="colorWell7" destination="0Ku-Vu-iyd" id="ADw-51-jM3"/>
+                        <outlet property="colorWell8" destination="0Jn-bb-hPF" id="3C4-p9-5FK"/>
+                        <outlet property="colorWell9" destination="BeM-9U-m9f" id="2Mu-2e-1VK"/>
                         <outlet property="runBtn" destination="Djb-Kp-hkF" id="hjh-Of-qQM"/>
                         <outlet property="sceneView" destination="RvT-eo-GD2" id="qIy-Y0-mNo"/>
+                        <outlet property="speedTextField" destination="kKk-5k-DoZ" id="6Cz-xo-GFG"/>
                         <outlet property="stepBtn" destination="oOP-R5-47Z" id="Jd5-Dz-hYs"/>
                     </connections>
                 </viewController>
                 <customObject id="nkn-Un-6pc" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController representsSharedInstance="YES" id="vzt-TV-NdJ"/>
             </objects>
-            <point key="canvasLocation" x="45" y="921"/>
+            <point key="canvasLocation" x="64" y="1059"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
