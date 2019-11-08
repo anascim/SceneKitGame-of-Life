@@ -116,12 +116,12 @@ class GameScene : SCNScene, SCNSceneRendererDelegate {
     }
     
     func reset() {
+        self.running = false
         pool.removeNodes()
         grid.killCells()
         grid.position = initGridPos
         cameraNode.position = initCameraPos
         lightNode.position = initLightNodePos
-        running = false
     }
     
     var interval: TimeInterval = 0.05

@@ -45,6 +45,7 @@ class Pool {
         for c in cubes {
             c.removeFromParentNode()
         }
+        self.pointer = 0
     }
     
     func getAvailableCube() -> SCNNode {

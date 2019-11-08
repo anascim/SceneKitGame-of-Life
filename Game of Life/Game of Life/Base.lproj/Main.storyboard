@@ -663,16 +663,15 @@
             <objects>
                 <viewController id="VET-lN-4yP" customClass="GameViewController" customModule="Game_of_Life" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="jAL-Pd-4P1">
-                        <rect key="frame" x="0.0" y="0.0" width="1280" height="720"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1280" height="714"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <sceneView loops="NO" preferredRenderingAPI="-1" id="RvT-eo-GD2">
-                                <rect key="frame" x="0.0" y="70" width="1280" height="650"/>
+                                <rect key="frame" x="0.0" y="103" width="1280" height="611"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </sceneView>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Djb-Kp-hkF">
-                                <rect key="frame" x="137" y="22" width="64" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Djb-Kp-hkF">
+                                <rect key="frame" x="104" y="36" width="64" height="32"/>
                                 <buttonCell key="cell" type="push" title="Run" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="hol-0o-grI">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -681,9 +680,8 @@
                                     <action selector="clickRunBtn:" target="VET-lN-4yP" id="V9T-FX-LxD"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oOP-R5-47Z">
-                                <rect key="frame" x="33" y="22" width="68" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oOP-R5-47Z">
+                                <rect key="frame" x="14" y="36" width="68" height="32"/>
                                 <buttonCell key="cell" type="push" title="Step" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="OfB-Dq-SPa">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -692,9 +690,11 @@
                                     <action selector="clickStepBtn:" target="VET-lN-4yP" id="72b-u9-Ab0"/>
                                 </connections>
                             </button>
-                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kKk-5k-DoZ">
-                                <rect key="frame" x="290" y="29" width="96" height="21"/>
-                                <autoresizingMask key="autoresizingMask"/>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kKk-5k-DoZ">
+                                <rect key="frame" x="267" y="43" width="96" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="96" id="UdE-C6-Ldq"/>
+                                </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="0.05" drawsBackground="YES" id="Z1v-Pf-mSS">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -704,123 +704,19 @@
                                     <action selector="speedTextFieldA:" target="VET-lN-4yP" id="nrj-Hi-gAV"/>
                                 </connections>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OOM-Oq-fMi">
-                                <rect key="frame" x="252" y="32" width="32" height="16"/>
-                                <autoresizingMask key="autoresizingMask"/>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OOM-Oq-fMi">
+                                <rect key="frame" x="229" y="46" width="32" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Rate" id="LWp-hD-V5h">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JFF-qW-pKL">
-                                <rect key="frame" x="447" y="32" width="47" height="16"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Palette" id="WUV-2J-rlu">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u91-RO-Pq6">
-                                <rect key="frame" x="500" y="38" width="24" height="23"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <color key="color" red="1" green="0.0" blue="0.056107677723829852" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <connections>
-                                    <action selector="colorWell1A:" target="VET-lN-4yP" id="8df-RA-Dkf"/>
-                                </connections>
-                            </colorWell>
-                            <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gnF-vz-V0r">
-                                <rect key="frame" x="532" y="39" width="24" height="23"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <color key="color" red="1" green="0.6970610832189883" blue="0.00019225223670882308" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <connections>
-                                    <action selector="colorWell3A:" target="VET-lN-4yP" id="Hqd-tm-yfG"/>
-                                </connections>
-                            </colorWell>
-                            <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hvw-kU-Zq8">
-                                <rect key="frame" x="564" y="39" width="24" height="23"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <color key="color" red="0.72686433306230569" green="0.98879855871200562" blue="0.31975748104741503" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <connections>
-                                    <action selector="colorWell5A:" target="VET-lN-4yP" id="LTw-8I-HtV"/>
-                                </connections>
-                            </colorWell>
-                            <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Ku-Vu-iyd">
-                                <rect key="frame" x="596" y="39" width="24" height="23"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <color key="color" red="0.42543825222571846" green="0.98436373472213745" blue="0.90334384922757383" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <connections>
-                                    <action selector="colorWell7A:" target="VET-lN-4yP" id="hfJ-E7-K7a"/>
-                                </connections>
-                            </colorWell>
-                            <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BeM-9U-m9f">
-                                <rect key="frame" x="628" y="39" width="24" height="23"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <color key="color" red="0.35489222746167026" green="0.28462633967323148" blue="0.96138554811477661" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <connections>
-                                    <action selector="colorWell9A:" target="VET-lN-4yP" id="zqf-R0-7SL"/>
-                                </connections>
-                            </colorWell>
-                            <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wh3-M5-adJ">
-                                <rect key="frame" x="660" y="39" width="24" height="23"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <color key="color" red="0.87435406841814689" green="0.28667959138116073" blue="0.96684795618057251" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <connections>
-                                    <action selector="colorWell11A:" target="VET-lN-4yP" id="ErZ-YY-VzT"/>
-                                </connections>
-                            </colorWell>
-                            <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0o5-u9-HC6">
-                                <rect key="frame" x="500" y="7" width="24" height="23"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <color key="color" red="0.9175150990486145" green="0.47912311916929307" blue="0.16051237156109888" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <connections>
-                                    <action selector="colorWell2A:" target="VET-lN-4yP" id="g8T-tJ-GJN"/>
-                                </connections>
-                            </colorWell>
-                            <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hzM-fb-JFl">
-                                <rect key="frame" x="532" y="8" width="24" height="23"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <color key="color" red="0.95532423257827759" green="0.82303764848598815" blue="0.27708115953870271" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <connections>
-                                    <action selector="colorWell4A:" target="VET-lN-4yP" id="Rdi-Oc-KDa"/>
-                                </connections>
-                            </colorWell>
-                            <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nh3-Io-oj8">
-                                <rect key="frame" x="564" y="8" width="24" height="23"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <color key="color" red="0.37838714316420208" green="0.98879855871200562" blue="0.39983921180078213" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <connections>
-                                    <action selector="colorWell6A:" target="VET-lN-4yP" id="qEG-Rr-cxz"/>
-                                </connections>
-                            </colorWell>
-                            <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Jn-bb-hPF">
-                                <rect key="frame" x="596" y="9" width="24" height="23"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <color key="color" red="0.34411416501093867" green="0.61011472254804267" blue="0.98436373472213745" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <connections>
-                                    <action selector="colorWell8A:" target="VET-lN-4yP" id="RFT-d6-qCd"/>
-                                </connections>
-                            </colorWell>
-                            <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="svc-GG-tJ1">
-                                <rect key="frame" x="628" y="8" width="24" height="23"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <color key="color" red="0.55101110721123148" green="0.28367062254465325" blue="0.96138554811477661" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <connections>
-                                    <action selector="colorWell10A:" target="VET-lN-4yP" id="HMB-kH-DJS"/>
-                                </connections>
-                            </colorWell>
-                            <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6p3-dz-YiW">
-                                <rect key="frame" x="660" y="8" width="24" height="23"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <color key="color" red="0.96684795618057251" green="0.30332067004754953" blue="0.64418387590803106" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <connections>
-                                    <action selector="coloWell12A:" target="VET-lN-4yP" id="Zx6-zq-7a6"/>
-                                </connections>
-                            </colorWell>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sab-2g-2PE">
-                                <rect key="frame" x="1191" y="22" width="75" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sab-2g-2PE">
+                                <rect key="frame" x="1191" y="36" width="75" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="63" id="9yF-ER-imz"/>
+                                </constraints>
                                 <buttonCell key="cell" type="push" title="Reset" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="oCs-p8-dCa">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -829,7 +725,211 @@
                                     <action selector="resetBtnA:" target="VET-lN-4yP" id="Jhd-Ok-wOa"/>
                                 </connections>
                             </button>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="DmS-AU-gB0">
+                                <rect key="frame" x="503" y="6" width="275" height="95"/>
+                                <subviews>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JFF-qW-pKL">
+                                        <rect key="frame" x="18" y="40" width="47" height="16"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Palette" id="WUV-2J-rlu">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="u91-RO-Pq6">
+                                        <rect key="frame" x="71" y="51" width="24" height="23"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="24" id="7wC-mQ-X1P"/>
+                                            <constraint firstAttribute="height" constant="23" id="l9C-lJ-EsF"/>
+                                        </constraints>
+                                        <color key="color" red="1" green="0.0" blue="0.056107677723829852" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <action selector="colorWell1A:" target="VET-lN-4yP" id="8df-RA-Dkf"/>
+                                        </connections>
+                                    </colorWell>
+                                    <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="0o5-u9-HC6">
+                                        <rect key="frame" x="71" y="20" width="24" height="23"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="23" id="FAM-3n-P9f"/>
+                                            <constraint firstAttribute="width" constant="24" id="VEq-dB-XCA"/>
+                                        </constraints>
+                                        <color key="color" red="0.9175150990486145" green="0.47912311916929307" blue="0.16051237156109888" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <connections>
+                                            <action selector="colorWell2A:" target="VET-lN-4yP" id="g8T-tJ-GJN"/>
+                                        </connections>
+                                    </colorWell>
+                                    <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="gnF-vz-V0r">
+                                        <rect key="frame" x="103" y="52" width="24" height="23"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="24" id="Nc1-Bh-iqr"/>
+                                            <constraint firstAttribute="height" constant="23" id="vPg-54-zyQ"/>
+                                        </constraints>
+                                        <color key="color" red="1" green="0.6970610832189883" blue="0.00019225223670882308" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <action selector="colorWell3A:" target="VET-lN-4yP" id="Hqd-tm-yfG"/>
+                                        </connections>
+                                    </colorWell>
+                                    <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="hzM-fb-JFl">
+                                        <rect key="frame" x="103" y="21" width="24" height="23"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="24" id="bEv-iC-Kas"/>
+                                            <constraint firstAttribute="height" constant="23" id="c0u-F5-2Vf"/>
+                                        </constraints>
+                                        <color key="color" red="0.95532423257827759" green="0.82303764848598815" blue="0.27708115953870271" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <connections>
+                                            <action selector="colorWell4A:" target="VET-lN-4yP" id="Rdi-Oc-KDa"/>
+                                        </connections>
+                                    </colorWell>
+                                    <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="Hvw-kU-Zq8">
+                                        <rect key="frame" x="135" y="52" width="24" height="23"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="24" id="2oD-pN-g7m"/>
+                                            <constraint firstAttribute="height" constant="23" id="VWZ-XN-dmq"/>
+                                        </constraints>
+                                        <color key="color" red="0.72686433306230569" green="0.98879855871200562" blue="0.31975748104741503" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <connections>
+                                            <action selector="colorWell5A:" target="VET-lN-4yP" id="LTw-8I-HtV"/>
+                                        </connections>
+                                    </colorWell>
+                                    <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="nh3-Io-oj8">
+                                        <rect key="frame" x="135" y="21" width="24" height="23"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="24" id="3bt-mC-34N"/>
+                                            <constraint firstAttribute="height" constant="23" id="tON-pP-oSu"/>
+                                        </constraints>
+                                        <color key="color" red="0.37838714316420208" green="0.98879855871200562" blue="0.39983921180078213" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <connections>
+                                            <action selector="colorWell6A:" target="VET-lN-4yP" id="qEG-Rr-cxz"/>
+                                        </connections>
+                                    </colorWell>
+                                    <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="0Ku-Vu-iyd">
+                                        <rect key="frame" x="167" y="52" width="24" height="23"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="24" id="Zal-IW-hIH"/>
+                                            <constraint firstAttribute="height" constant="23" id="lQo-gr-Yxx"/>
+                                        </constraints>
+                                        <color key="color" red="0.42543825222571846" green="0.98436373472213745" blue="0.90334384922757383" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <connections>
+                                            <action selector="colorWell7A:" target="VET-lN-4yP" id="hfJ-E7-K7a"/>
+                                        </connections>
+                                    </colorWell>
+                                    <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="BeM-9U-m9f">
+                                        <rect key="frame" x="199" y="52" width="24" height="23"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="23" id="fyl-9k-Wr3"/>
+                                            <constraint firstAttribute="width" constant="24" id="ynt-Q8-6wj"/>
+                                        </constraints>
+                                        <color key="color" red="0.35489222746167026" green="0.28462633967323148" blue="0.96138554811477661" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <connections>
+                                            <action selector="colorWell9A:" target="VET-lN-4yP" id="zqf-R0-7SL"/>
+                                        </connections>
+                                    </colorWell>
+                                    <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="svc-GG-tJ1">
+                                        <rect key="frame" x="199" y="21" width="24" height="23"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="24" id="KoZ-Qr-Nxq"/>
+                                            <constraint firstAttribute="height" constant="23" id="U0X-7z-HoX"/>
+                                        </constraints>
+                                        <color key="color" red="0.55101110721123148" green="0.28367062254465325" blue="0.96138554811477661" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <connections>
+                                            <action selector="colorWell10A:" target="VET-lN-4yP" id="HMB-kH-DJS"/>
+                                        </connections>
+                                    </colorWell>
+                                    <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="Wh3-M5-adJ">
+                                        <rect key="frame" x="231" y="52" width="24" height="23"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="23" id="fjm-cD-wSz"/>
+                                            <constraint firstAttribute="width" constant="24" id="kiM-Uy-2QQ"/>
+                                        </constraints>
+                                        <color key="color" red="0.87435406841814689" green="0.28667959138116073" blue="0.96684795618057251" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <connections>
+                                            <action selector="colorWell11A:" target="VET-lN-4yP" id="ErZ-YY-VzT"/>
+                                        </connections>
+                                    </colorWell>
+                                    <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="6p3-dz-YiW">
+                                        <rect key="frame" x="231" y="21" width="24" height="23"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="24" id="Ixi-gD-HI5"/>
+                                            <constraint firstAttribute="height" constant="23" id="rT8-aU-ENU"/>
+                                        </constraints>
+                                        <color key="color" red="0.96684795618057251" green="0.30332067004754953" blue="0.64418387590803106" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <connections>
+                                            <action selector="coloWell12A:" target="VET-lN-4yP" id="Zx6-zq-7a6"/>
+                                        </connections>
+                                    </colorWell>
+                                    <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="0Jn-bb-hPF">
+                                        <rect key="frame" x="167" y="21" width="24" height="23"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="23" id="Ocm-G3-qwn"/>
+                                            <constraint firstAttribute="width" constant="24" id="tjK-Jd-fIM"/>
+                                        </constraints>
+                                        <color key="color" red="0.34411416501093867" green="0.61011472254804267" blue="0.98436373472213745" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <connections>
+                                            <action selector="colorWell8A:" target="VET-lN-4yP" id="RFT-d6-qCd"/>
+                                        </connections>
+                                    </colorWell>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="275" id="0Ug-60-mB4"/>
+                                    <constraint firstItem="u91-RO-Pq6" firstAttribute="top" secondItem="DmS-AU-gB0" secondAttribute="top" constant="21" id="2D8-cg-o8a"/>
+                                    <constraint firstItem="u91-RO-Pq6" firstAttribute="leading" secondItem="JFF-qW-pKL" secondAttribute="trailing" constant="8" id="84A-St-LdK"/>
+                                    <constraint firstItem="0Ku-Vu-iyd" firstAttribute="top" secondItem="DmS-AU-gB0" secondAttribute="top" constant="20" id="AoR-8c-4EW"/>
+                                    <constraint firstItem="JFF-qW-pKL" firstAttribute="top" secondItem="DmS-AU-gB0" secondAttribute="top" constant="39" id="Ay6-JS-X1z"/>
+                                    <constraint firstItem="BeM-9U-m9f" firstAttribute="top" secondItem="DmS-AU-gB0" secondAttribute="top" constant="20" id="DzO-F5-vRV"/>
+                                    <constraint firstAttribute="bottom" secondItem="6p3-dz-YiW" secondAttribute="bottom" constant="21" id="EJI-yb-5ZV"/>
+                                    <constraint firstItem="nh3-Io-oj8" firstAttribute="leading" secondItem="hzM-fb-JFl" secondAttribute="trailing" constant="8" id="HQJ-cL-7Gv"/>
+                                    <constraint firstItem="gnF-vz-V0r" firstAttribute="leading" secondItem="u91-RO-Pq6" secondAttribute="trailing" constant="8" id="Ifv-aJ-JsD"/>
+                                    <constraint firstAttribute="bottom" secondItem="nh3-Io-oj8" secondAttribute="bottom" constant="21" id="JP4-Kh-VNk"/>
+                                    <constraint firstItem="Hvw-kU-Zq8" firstAttribute="top" secondItem="DmS-AU-gB0" secondAttribute="top" constant="20" id="Md7-up-Q9q"/>
+                                    <constraint firstAttribute="bottom" secondItem="hzM-fb-JFl" secondAttribute="bottom" constant="21" id="Mz5-72-YFp"/>
+                                    <constraint firstItem="0Jn-bb-hPF" firstAttribute="top" secondItem="0Ku-Vu-iyd" secondAttribute="bottom" constant="8" id="NFB-GF-tEm"/>
+                                    <constraint firstItem="JFF-qW-pKL" firstAttribute="leading" secondItem="DmS-AU-gB0" secondAttribute="leading" constant="20" id="PcF-Q2-bUt"/>
+                                    <constraint firstItem="Wh3-M5-adJ" firstAttribute="top" secondItem="DmS-AU-gB0" secondAttribute="top" constant="20" id="QIg-jf-VyD"/>
+                                    <constraint firstItem="svc-GG-tJ1" firstAttribute="top" secondItem="BeM-9U-m9f" secondAttribute="bottom" constant="8" id="RQ5-xp-ylN"/>
+                                    <constraint firstItem="0Jn-bb-hPF" firstAttribute="leading" secondItem="nh3-Io-oj8" secondAttribute="trailing" constant="8" id="RUF-MD-G4J"/>
+                                    <constraint firstAttribute="trailing" secondItem="Wh3-M5-adJ" secondAttribute="trailing" constant="20" id="SBA-Y2-ZYS"/>
+                                    <constraint firstAttribute="bottom" secondItem="0Jn-bb-hPF" secondAttribute="bottom" constant="21" id="VWw-f8-6lf"/>
+                                    <constraint firstItem="Hvw-kU-Zq8" firstAttribute="leading" secondItem="gnF-vz-V0r" secondAttribute="trailing" constant="8" id="VaB-9U-qfu"/>
+                                    <constraint firstItem="0o5-u9-HC6" firstAttribute="leading" secondItem="DmS-AU-gB0" secondAttribute="leading" constant="71" id="Ve4-Fv-9lH"/>
+                                    <constraint firstAttribute="bottom" secondItem="JFF-qW-pKL" secondAttribute="bottom" constant="40" id="XVu-mf-VBl"/>
+                                    <constraint firstAttribute="trailing" secondItem="6p3-dz-YiW" secondAttribute="trailing" constant="20" id="aTa-4c-ebf"/>
+                                    <constraint firstItem="0Ku-Vu-iyd" firstAttribute="leading" secondItem="Hvw-kU-Zq8" secondAttribute="trailing" constant="8" id="cdo-nS-2Y0"/>
+                                    <constraint firstAttribute="height" constant="95" id="dYE-WC-Dbe"/>
+                                    <constraint firstAttribute="bottom" secondItem="svc-GG-tJ1" secondAttribute="bottom" constant="21" id="dx7-mn-l1K"/>
+                                    <constraint firstItem="svc-GG-tJ1" firstAttribute="leading" secondItem="0Jn-bb-hPF" secondAttribute="trailing" constant="8" id="eLP-OH-NJf"/>
+                                    <constraint firstItem="hzM-fb-JFl" firstAttribute="top" secondItem="gnF-vz-V0r" secondAttribute="bottom" constant="8" id="eVi-eU-zx1"/>
+                                    <constraint firstItem="0o5-u9-HC6" firstAttribute="top" secondItem="u91-RO-Pq6" secondAttribute="bottom" constant="8" id="fVB-7g-l8e"/>
+                                    <constraint firstItem="BeM-9U-m9f" firstAttribute="leading" secondItem="0Ku-Vu-iyd" secondAttribute="trailing" constant="8" id="iZB-86-bPl"/>
+                                    <constraint firstItem="hzM-fb-JFl" firstAttribute="leading" secondItem="0o5-u9-HC6" secondAttribute="trailing" constant="8" id="nWr-kk-rdj"/>
+                                    <constraint firstItem="gnF-vz-V0r" firstAttribute="top" secondItem="DmS-AU-gB0" secondAttribute="top" constant="20" id="puQ-JQ-jR1"/>
+                                    <constraint firstItem="Wh3-M5-adJ" firstAttribute="leading" secondItem="BeM-9U-m9f" secondAttribute="trailing" constant="8" id="scI-yc-AKq"/>
+                                    <constraint firstItem="nh3-Io-oj8" firstAttribute="top" secondItem="Hvw-kU-Zq8" secondAttribute="bottom" constant="8" id="sxK-6a-0nR"/>
+                                    <constraint firstItem="6p3-dz-YiW" firstAttribute="leading" secondItem="svc-GG-tJ1" secondAttribute="trailing" constant="8" id="sz0-FY-fje"/>
+                                    <constraint firstAttribute="bottom" secondItem="0o5-u9-HC6" secondAttribute="bottom" constant="20" id="xsx-gn-IjT"/>
+                                    <constraint firstItem="6p3-dz-YiW" firstAttribute="top" secondItem="Wh3-M5-adJ" secondAttribute="bottom" constant="8" id="zQw-fb-hEb"/>
+                                </constraints>
+                            </customView>
                         </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="sab-2g-2PE" secondAttribute="trailing" constant="20" id="1FU-17-y1r"/>
+                            <constraint firstItem="DmS-AU-gB0" firstAttribute="top" secondItem="RvT-eo-GD2" secondAttribute="bottom" constant="2" id="21u-Lg-Uyi"/>
+                            <constraint firstItem="kKk-5k-DoZ" firstAttribute="top" secondItem="RvT-eo-GD2" secondAttribute="bottom" constant="39" id="7ke-KW-sl0"/>
+                            <constraint firstAttribute="bottom" secondItem="oOP-R5-47Z" secondAttribute="bottom" constant="43" id="GWZ-4C-bNM"/>
+                            <constraint firstItem="Djb-Kp-hkF" firstAttribute="leading" secondItem="oOP-R5-47Z" secondAttribute="trailing" constant="34" id="JCk-cz-jEg"/>
+                            <constraint firstItem="Djb-Kp-hkF" firstAttribute="top" secondItem="RvT-eo-GD2" secondAttribute="bottom" constant="39" id="K2c-uQ-mb7"/>
+                            <constraint firstItem="OOM-Oq-fMi" firstAttribute="top" secondItem="RvT-eo-GD2" secondAttribute="bottom" constant="41" id="OhF-R6-bqJ"/>
+                            <constraint firstItem="sab-2g-2PE" firstAttribute="top" secondItem="RvT-eo-GD2" secondAttribute="bottom" constant="39" id="Un4-SW-YTT"/>
+                            <constraint firstItem="OOM-Oq-fMi" firstAttribute="leading" secondItem="Djb-Kp-hkF" secondAttribute="trailing" constant="69" id="YXc-Hl-cQQ"/>
+                            <constraint firstItem="DmS-AU-gB0" firstAttribute="centerX" secondItem="jAL-Pd-4P1" secondAttribute="centerX" id="bys-xD-BUJ"/>
+                            <constraint firstAttribute="bottom" secondItem="DmS-AU-gB0" secondAttribute="bottom" constant="6" id="cN5-Bu-4BT"/>
+                            <constraint firstAttribute="bottom" secondItem="sab-2g-2PE" secondAttribute="bottom" constant="43" id="jS1-4f-xT6"/>
+                            <constraint firstItem="kKk-5k-DoZ" firstAttribute="leading" secondItem="OOM-Oq-fMi" secondAttribute="trailing" constant="8" id="kVC-LZ-4VF"/>
+                            <constraint firstItem="oOP-R5-47Z" firstAttribute="leading" secondItem="jAL-Pd-4P1" secondAttribute="leading" constant="20" id="l3K-bw-HhL"/>
+                            <constraint firstAttribute="bottom" secondItem="OOM-Oq-fMi" secondAttribute="bottom" constant="46" id="lIa-hr-oOi"/>
+                            <constraint firstItem="oOP-R5-47Z" firstAttribute="top" secondItem="RvT-eo-GD2" secondAttribute="bottom" constant="39" id="x9Z-pZ-twI"/>
+                            <constraint firstAttribute="bottom" secondItem="Djb-Kp-hkF" secondAttribute="bottom" constant="43" id="xMa-aK-RX0"/>
+                            <constraint firstAttribute="bottom" secondItem="kKk-5k-DoZ" secondAttribute="bottom" constant="43" id="yzf-zx-A8B"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="colorWell1" destination="u91-RO-Pq6" id="htY-Xn-SfW"/>
